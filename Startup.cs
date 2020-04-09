@@ -1,14 +1,15 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
-
-using System.Reflection;
+﻿using System.Reflection;
+using IdentityServer4.Validation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using record_keep_auth_service;
 using record_keep_identity_server.DBO;
+using record_keep_identity_server.DBO.User;
+using record_keep_identity_server.Validator;
 
 namespace record_keep_identity_server
 {
@@ -30,7 +31,6 @@ namespace record_keep_identity_server
             var connectionStringIdentity = Configuration.GetConnectionString("RecordKeepIdentity");
 
             var builder = services.AddIdentityServer()
-                .AddTestUsers(Config.GetTestUsers())
                 .AddJwtBearerClientAuthentication()
                 .AddConfigurationStore<CustomConfigurationDbContext>(options =>
                 {
@@ -43,6 +43,12 @@ namespace record_keep_identity_server
                         contextOptionsBuilder => contextOptionsBuilder.MigrationsAssembly(migrationsAssembly));
                     options.EnableTokenCleanup = true;
                 });
+
+            services.AddDbContext<UserContext>(optionsBuilder =>
+                optionsBuilder.UseNpgsql(Configuration.GetConnectionString("RecordKeep")));
+
+            services.AddSingleton<IAuthService, AuthService>();
+            services.AddTransient<IResourceOwnerPasswordValidator, ResourceOwnerPasswordValidator>();
 
             if (Environment.IsDevelopment())
             {

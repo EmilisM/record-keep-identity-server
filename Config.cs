@@ -1,38 +1,17 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
-
-using System.Collections.Generic;
-using System.Security.Claims;
+﻿using System.Collections.Generic;
 using IdentityModel;
 using IdentityServer4.EntityFramework.Entities;
 using IdentityServer4.EntityFramework.Mappers;
 using IdentityServer4.Models;
-using IdentityServer4.Test;
 using Microsoft.EntityFrameworkCore;
 using ApiResource = IdentityServer4.Models.ApiResource;
 using Client = IdentityServer4.Models.Client;
+using IdentityResource = IdentityServer4.EntityFramework.Entities.IdentityResource;
 
 namespace record_keep_identity_server
 {
     public static class Config
     {
-        public static List<TestUser> GetTestUsers()
-        {
-            return new List<TestUser>
-            {
-                new TestUser
-                {
-                    SubjectId = "1",
-                    Username = "admin",
-                    Password = "admin",
-                    Claims = new List<Claim>
-                    {
-                        new Claim(JwtClaimTypes.Name, "Test")
-                    }
-                }
-            };
-        }
-
         public static void ConfigurationDbContextSeed(this ModelBuilder modelBuilder)
         {
             var clientGrantTypeEntity = new ClientGrantType
@@ -72,7 +51,7 @@ namespace record_keep_identity_server
                 Value = "record-keep-api-secret".Sha256()
             };
 
-            var apiResourceClaimEntity = new ApiResourceClaim()
+            var apiResourceClaimEntity = new ApiResourceClaim
             {
                 Id = -1,
                 ApiResourceId = -1,
@@ -96,6 +75,40 @@ namespace record_keep_identity_server
             var apiResourceEntity = apiResource.ToEntity();
             apiResourceEntity.Id = -1;
 
+            var openIdIdentity = new IdentityResources.OpenId().ToEntity();
+            var profileIdentity = new IdentityResources.Profile().ToEntity();
+
+            openIdIdentity.Id = -1;
+            profileIdentity.Id = -2;
+
+            var identityClaimOpenId = new IdentityClaim
+            {
+                Id = -1,
+                Type = JwtClaimTypes.Subject,
+                IdentityResourceId = -1
+            };
+
+            var identityClaims = new List<IdentityClaim>
+            {
+                identityClaimOpenId
+            };
+
+            var index = -2;
+            foreach (var claims in profileIdentity.UserClaims)
+            {
+                identityClaims.Add(new IdentityClaim
+                {
+                    Id = index,
+                    Type = claims.Type,
+                    IdentityResourceId = -2,
+                });
+
+                index--;
+            }
+
+            openIdIdentity.UserClaims = new List<IdentityClaim>();
+            profileIdentity.UserClaims = new List<IdentityClaim>();
+
             modelBuilder.Entity<ClientGrantType>().HasData(clientGrantTypeEntity);
             modelBuilder.Entity<ClientScope>().HasData(clientScopesEntity);
             modelBuilder.Entity<ClientSecret>().HasData(clientSecretsEntity);
@@ -105,6 +118,9 @@ namespace record_keep_identity_server
             modelBuilder.Entity<ApiResourceClaim>().HasData(apiResourceClaimEntity);
             modelBuilder.Entity<ApiScope>().HasData(apiResourceScopesEntity);
             modelBuilder.Entity<IdentityServer4.EntityFramework.Entities.ApiResource>().HasData(apiResourceEntity);
+
+            modelBuilder.Entity<IdentityResource>().HasData(openIdIdentity, profileIdentity);
+            modelBuilder.Entity<IdentityClaim>().HasData(identityClaims);
         }
     }
 }

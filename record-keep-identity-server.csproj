@@ -15,4 +15,12 @@
     <ItemGroup>
       <Folder Include="Migrations\ConfigurationDb" />
     </ItemGroup>
+    <ItemGroup>
+      <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\record-keep-auth-service\bin\Release\BouncyCastle.Crypto.dll</HintPath>
+      </Reference>
+      <Reference Include="record-keep-auth-service, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\record-keep-auth-service\bin\Release\record-keep-auth-service.dll</HintPath>
+      </Reference>
+    </ItemGroup>
 </Project>

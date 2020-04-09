@@ -19,10 +19,7 @@ namespace recordkeepidentityserver.Migrations.PersistedGrantDb
                     Expiration = table.Column<DateTime>(nullable: false),
                     Data = table.Column<string>(maxLength: 50000, nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DeviceCodes", x => x.UserCode);
-                });
+                constraints: table => { table.PrimaryKey("PK_DeviceCodes", x => x.UserCode); });
 
             migrationBuilder.CreateTable(
                 name: "PersistedGrants",
@@ -36,10 +33,7 @@ namespace recordkeepidentityserver.Migrations.PersistedGrantDb
                     Expiration = table.Column<DateTime>(nullable: true),
                     Data = table.Column<string>(maxLength: 50000, nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PersistedGrants", x => x.Key);
-                });
+                constraints: table => { table.PrimaryKey("PK_PersistedGrants", x => x.Key); });
 
             migrationBuilder.CreateIndex(
                 name: "IX_DeviceCodes_DeviceCode",
@@ -60,7 +54,7 @@ namespace recordkeepidentityserver.Migrations.PersistedGrantDb
             migrationBuilder.CreateIndex(
                 name: "IX_PersistedGrants_SubjectId_ClientId_Type",
                 table: "PersistedGrants",
-                columns: new[] { "SubjectId", "ClientId", "Type" });
+                columns: new[] {"SubjectId", "ClientId", "Type"});
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

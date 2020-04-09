@@ -3,7 +3,6 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using record_keep_identity_server.DBO;
 
@@ -67,7 +66,7 @@ namespace recordkeepidentityserver.Migrations.ConfigurationDb
                     new
                     {
                         Id = -1,
-                        Created = new DateTime(2020, 4, 5, 16, 56, 44, 952, DateTimeKind.Utc).AddTicks(1165),
+                        Created = new DateTime(2020, 4, 9, 19, 23, 32, 586, DateTimeKind.Utc).AddTicks(8265),
                         DisplayName = "Record Keep API",
                         Enabled = true,
                         Name = "record-keep-api",
@@ -254,7 +253,7 @@ namespace recordkeepidentityserver.Migrations.ConfigurationDb
                     {
                         Id = -1,
                         ApiResourceId = -1,
-                        Created = new DateTime(2020, 4, 5, 16, 56, 44, 925, DateTimeKind.Utc).AddTicks(4494),
+                        Created = new DateTime(2020, 4, 9, 19, 23, 32, 562, DateTimeKind.Utc).AddTicks(85),
                         Type = "SharedSecret",
                         Value = "Af+niBFGH0GtZCGHxrt4l9TIZhA4SIfuHDVQpyo4kUA="
                     });
@@ -428,7 +427,7 @@ namespace recordkeepidentityserver.Migrations.ConfigurationDb
                         BackChannelLogoutSessionRequired = true,
                         ClientClaimsPrefix = "client_",
                         ClientId = "record-keep",
-                        Created = new DateTime(2020, 4, 5, 16, 56, 44, 923, DateTimeKind.Utc).AddTicks(7971),
+                        Created = new DateTime(2020, 4, 9, 19, 23, 32, 560, DateTimeKind.Utc).AddTicks(4796),
                         DeviceCodeLifetime = 300,
                         EnableLocalLogin = true,
                         Enabled = true,
@@ -699,7 +698,7 @@ namespace recordkeepidentityserver.Migrations.ConfigurationDb
                     {
                         Id = -1,
                         ClientId = -1,
-                        Created = new DateTime(2020, 4, 5, 16, 56, 44, 723, DateTimeKind.Utc).AddTicks(5316),
+                        Created = new DateTime(2020, 4, 9, 19, 23, 32, 383, DateTimeKind.Utc).AddTicks(6821),
                         Type = "SharedSecret",
                         Value = "SVMh3ARiDOtiprKv7cae7dAiGypszDwfNyrdP6ccW5k="
                     });
@@ -726,6 +725,98 @@ namespace recordkeepidentityserver.Migrations.ConfigurationDb
                 b.HasIndex("IdentityResourceId");
 
                 b.ToTable("IdentityClaims");
+
+                b.HasData(
+                    new
+                    {
+                        Id = -1,
+                        IdentityResourceId = -1,
+                        Type = "sub"
+                    },
+                    new
+                    {
+                        Id = -2,
+                        IdentityResourceId = -2,
+                        Type = "name"
+                    },
+                    new
+                    {
+                        Id = -3,
+                        IdentityResourceId = -2,
+                        Type = "family_name"
+                    },
+                    new
+                    {
+                        Id = -4,
+                        IdentityResourceId = -2,
+                        Type = "given_name"
+                    },
+                    new
+                    {
+                        Id = -5,
+                        IdentityResourceId = -2,
+                        Type = "middle_name"
+                    },
+                    new
+                    {
+                        Id = -6,
+                        IdentityResourceId = -2,
+                        Type = "nickname"
+                    },
+                    new
+                    {
+                        Id = -7,
+                        IdentityResourceId = -2,
+                        Type = "preferred_username"
+                    },
+                    new
+                    {
+                        Id = -8,
+                        IdentityResourceId = -2,
+                        Type = "profile"
+                    },
+                    new
+                    {
+                        Id = -9,
+                        IdentityResourceId = -2,
+                        Type = "picture"
+                    },
+                    new
+                    {
+                        Id = -10,
+                        IdentityResourceId = -2,
+                        Type = "website"
+                    },
+                    new
+                    {
+                        Id = -11,
+                        IdentityResourceId = -2,
+                        Type = "gender"
+                    },
+                    new
+                    {
+                        Id = -12,
+                        IdentityResourceId = -2,
+                        Type = "birthdate"
+                    },
+                    new
+                    {
+                        Id = -13,
+                        IdentityResourceId = -2,
+                        Type = "zoneinfo"
+                    },
+                    new
+                    {
+                        Id = -14,
+                        IdentityResourceId = -2,
+                        Type = "locale"
+                    },
+                    new
+                    {
+                        Id = -15,
+                        IdentityResourceId = -2,
+                        Type = "updated_at"
+                    });
             });
 
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.IdentityResource", b =>
@@ -776,6 +867,33 @@ namespace recordkeepidentityserver.Migrations.ConfigurationDb
                     .IsUnique();
 
                 b.ToTable("IdentityResources");
+
+                b.HasData(
+                    new
+                    {
+                        Id = -1,
+                        Created = new DateTime(2020, 4, 9, 19, 23, 32, 599, DateTimeKind.Utc).AddTicks(1273),
+                        DisplayName = "Your user identifier",
+                        Emphasize = false,
+                        Enabled = true,
+                        Name = "openid",
+                        NonEditable = false,
+                        Required = true,
+                        ShowInDiscoveryDocument = true
+                    },
+                    new
+                    {
+                        Id = -2,
+                        Created = new DateTime(2020, 4, 9, 19, 23, 32, 607, DateTimeKind.Utc).AddTicks(6237),
+                        Description = "Your user profile information (first name, last name, etc.)",
+                        DisplayName = "User profile",
+                        Emphasize = true,
+                        Enabled = true,
+                        Name = "profile",
+                        NonEditable = false,
+                        Required = false,
+                        ShowInDiscoveryDocument = true
+                    });
             });
 
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.IdentityResourceProperty", b =>
