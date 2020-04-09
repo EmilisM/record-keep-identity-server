@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using IdentityModel;
+using IdentityServer4;
 using IdentityServer4.EntityFramework.Entities;
 using IdentityServer4.EntityFramework.Mappers;
 using IdentityServer4.Models;
@@ -18,14 +19,29 @@ namespace record_keep_identity_server
             {
                 Id = -1,
                 GrantType = GrantType.ResourceOwnerPassword,
-                ClientId = -1
+                ClientId = -1,
             };
 
-            var clientScopesEntity = new ClientScope
+            var clientScopes = new[]
             {
-                ClientId = -1,
-                Id = -1,
-                Scope = "record-keep-api"
+                new ClientScope
+                {
+                    ClientId = -1,
+                    Id = -1,
+                    Scope = "record-keep-api"
+                },
+                new ClientScope
+                {
+                    ClientId = -1,
+                    Id = -2,
+                    Scope = IdentityServerConstants.StandardScopes.OpenId
+                },
+                new ClientScope
+                {
+                    ClientId = -1,
+                    Id = -3,
+                    Scope = IdentityServerConstants.StandardScopes.Profile
+                }
             };
 
             var clientSecretsEntity = new ClientSecret
@@ -110,7 +126,7 @@ namespace record_keep_identity_server
             profileIdentity.UserClaims = new List<IdentityClaim>();
 
             modelBuilder.Entity<ClientGrantType>().HasData(clientGrantTypeEntity);
-            modelBuilder.Entity<ClientScope>().HasData(clientScopesEntity);
+            modelBuilder.Entity<ClientScope>().HasData(clientScopes);
             modelBuilder.Entity<ClientSecret>().HasData(clientSecretsEntity);
             modelBuilder.Entity<IdentityServer4.EntityFramework.Entities.Client>().HasData(clientEntity);
 

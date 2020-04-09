@@ -66,7 +66,7 @@ namespace recordkeepidentityserver.Migrations.ConfigurationDb
                     new
                     {
                         Id = -1,
-                        Created = new DateTime(2020, 4, 9, 19, 23, 32, 586, DateTimeKind.Utc).AddTicks(8265),
+                        Created = new DateTime(2020, 4, 9, 20, 0, 23, 874, DateTimeKind.Utc).AddTicks(7728),
                         DisplayName = "Record Keep API",
                         Enabled = true,
                         Name = "record-keep-api",
@@ -253,7 +253,7 @@ namespace recordkeepidentityserver.Migrations.ConfigurationDb
                     {
                         Id = -1,
                         ApiResourceId = -1,
-                        Created = new DateTime(2020, 4, 9, 19, 23, 32, 562, DateTimeKind.Utc).AddTicks(85),
+                        Created = new DateTime(2020, 4, 9, 20, 0, 23, 850, DateTimeKind.Utc).AddTicks(1322),
                         Type = "SharedSecret",
                         Value = "Af+niBFGH0GtZCGHxrt4l9TIZhA4SIfuHDVQpyo4kUA="
                     });
@@ -427,7 +427,7 @@ namespace recordkeepidentityserver.Migrations.ConfigurationDb
                         BackChannelLogoutSessionRequired = true,
                         ClientClaimsPrefix = "client_",
                         ClientId = "record-keep",
-                        Created = new DateTime(2020, 4, 9, 19, 23, 32, 560, DateTimeKind.Utc).AddTicks(4796),
+                        Created = new DateTime(2020, 4, 9, 20, 0, 23, 848, DateTimeKind.Utc).AddTicks(6230),
                         DeviceCodeLifetime = 300,
                         EnableLocalLogin = true,
                         Enabled = true,
@@ -653,6 +653,18 @@ namespace recordkeepidentityserver.Migrations.ConfigurationDb
                         Id = -1,
                         ClientId = -1,
                         Scope = "record-keep-api"
+                    },
+                    new
+                    {
+                        Id = -2,
+                        ClientId = -1,
+                        Scope = "openid"
+                    },
+                    new
+                    {
+                        Id = -3,
+                        ClientId = -1,
+                        Scope = "profile"
                     });
             });
 
@@ -698,7 +710,7 @@ namespace recordkeepidentityserver.Migrations.ConfigurationDb
                     {
                         Id = -1,
                         ClientId = -1,
-                        Created = new DateTime(2020, 4, 9, 19, 23, 32, 383, DateTimeKind.Utc).AddTicks(6821),
+                        Created = new DateTime(2020, 4, 9, 20, 0, 23, 664, DateTimeKind.Utc).AddTicks(5696),
                         Type = "SharedSecret",
                         Value = "SVMh3ARiDOtiprKv7cae7dAiGypszDwfNyrdP6ccW5k="
                     });
@@ -872,7 +884,7 @@ namespace recordkeepidentityserver.Migrations.ConfigurationDb
                     new
                     {
                         Id = -1,
-                        Created = new DateTime(2020, 4, 9, 19, 23, 32, 599, DateTimeKind.Utc).AddTicks(1273),
+                        Created = new DateTime(2020, 4, 9, 20, 0, 23, 887, DateTimeKind.Utc).AddTicks(4300),
                         DisplayName = "Your user identifier",
                         Emphasize = false,
                         Enabled = true,
@@ -884,7 +896,7 @@ namespace recordkeepidentityserver.Migrations.ConfigurationDb
                     new
                     {
                         Id = -2,
-                        Created = new DateTime(2020, 4, 9, 19, 23, 32, 607, DateTimeKind.Utc).AddTicks(6237),
+                        Created = new DateTime(2020, 4, 9, 20, 0, 23, 895, DateTimeKind.Utc).AddTicks(4285),
                         Description = "Your user profile information (first name, last name, etc.)",
                         DisplayName = "User profile",
                         Emphasize = true,
