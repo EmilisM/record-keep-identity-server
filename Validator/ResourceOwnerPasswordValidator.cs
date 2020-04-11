@@ -41,6 +41,7 @@ namespace record_keep_identity_server.Validator
                 {
                     context.Result =
                         new GrantValidationResult(TokenRequestErrors.InvalidRequest, "Invalid credentials");
+                    return;
                 }
 
                 context.Result = new GrantValidationResult(user.Id.ToString(), "ROPG", GetUserClaims(user));
