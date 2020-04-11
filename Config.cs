@@ -44,28 +44,17 @@ namespace record_keep_identity_server
                 }
             };
 
-            var clientSecretsEntity = new ClientSecret
-            {
-                Id = -1,
-                ClientId = -1,
-                Value = "record-keep-secret".Sha256()
-            };
-
             var client = new Client
             {
                 ClientId = "record-keep",
                 AccessTokenType = AccessTokenType.Jwt,
+                RequireClientSecret = false,
+                AllowOfflineAccess = false,
+                AllowAccessTokensViaBrowser = true
             };
 
             var clientEntity = client.ToEntity();
             clientEntity.Id = -1;
-
-            var apiSecretEntity = new ApiSecret
-            {
-                Id = -1,
-                ApiResourceId = -1,
-                Value = "record-keep-api-secret".Sha256()
-            };
 
             var apiResourceClaimEntity = new ApiResourceClaim
             {
@@ -127,10 +116,8 @@ namespace record_keep_identity_server
 
             modelBuilder.Entity<ClientGrantType>().HasData(clientGrantTypeEntity);
             modelBuilder.Entity<ClientScope>().HasData(clientScopes);
-            modelBuilder.Entity<ClientSecret>().HasData(clientSecretsEntity);
             modelBuilder.Entity<IdentityServer4.EntityFramework.Entities.Client>().HasData(clientEntity);
 
-            modelBuilder.Entity<ApiSecret>().HasData(apiSecretEntity);
             modelBuilder.Entity<ApiResourceClaim>().HasData(apiResourceClaimEntity);
             modelBuilder.Entity<ApiScope>().HasData(apiResourceScopesEntity);
             modelBuilder.Entity<IdentityServer4.EntityFramework.Entities.ApiResource>().HasData(apiResourceEntity);

@@ -66,7 +66,7 @@ namespace recordkeepidentityserver.Migrations.ConfigurationDb
                     new
                     {
                         Id = -1,
-                        Created = new DateTime(2020, 4, 9, 20, 0, 23, 874, DateTimeKind.Utc).AddTicks(7728),
+                        Created = new DateTime(2020, 4, 11, 18, 30, 47, 879, DateTimeKind.Utc).AddTicks(1899),
                         DisplayName = "Record Keep API",
                         Enabled = true,
                         Name = "record-keep-api",
@@ -247,16 +247,6 @@ namespace recordkeepidentityserver.Migrations.ConfigurationDb
                 b.HasIndex("ApiResourceId");
 
                 b.ToTable("ApiSecrets");
-
-                b.HasData(
-                    new
-                    {
-                        Id = -1,
-                        ApiResourceId = -1,
-                        Created = new DateTime(2020, 4, 9, 20, 0, 23, 850, DateTimeKind.Utc).AddTicks(1322),
-                        Type = "SharedSecret",
-                        Value = "Af+niBFGH0GtZCGHxrt4l9TIZhA4SIfuHDVQpyo4kUA="
-                    });
             });
 
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.Client", b =>
@@ -417,7 +407,7 @@ namespace recordkeepidentityserver.Migrations.ConfigurationDb
                         AbsoluteRefreshTokenLifetime = 2592000,
                         AccessTokenLifetime = 3600,
                         AccessTokenType = 0,
-                        AllowAccessTokensViaBrowser = false,
+                        AllowAccessTokensViaBrowser = true,
                         AllowOfflineAccess = false,
                         AllowPlainTextPkce = false,
                         AllowRememberConsent = true,
@@ -427,7 +417,7 @@ namespace recordkeepidentityserver.Migrations.ConfigurationDb
                         BackChannelLogoutSessionRequired = true,
                         ClientClaimsPrefix = "client_",
                         ClientId = "record-keep",
-                        Created = new DateTime(2020, 4, 9, 20, 0, 23, 848, DateTimeKind.Utc).AddTicks(6230),
+                        Created = new DateTime(2020, 4, 11, 18, 30, 47, 851, DateTimeKind.Utc).AddTicks(9739),
                         DeviceCodeLifetime = 300,
                         EnableLocalLogin = true,
                         Enabled = true,
@@ -438,7 +428,7 @@ namespace recordkeepidentityserver.Migrations.ConfigurationDb
                         ProtocolType = "oidc",
                         RefreshTokenExpiration = 1,
                         RefreshTokenUsage = 1,
-                        RequireClientSecret = true,
+                        RequireClientSecret = false,
                         RequireConsent = true,
                         RequirePkce = false,
                         SlidingRefreshTokenLifetime = 1296000,
@@ -704,16 +694,6 @@ namespace recordkeepidentityserver.Migrations.ConfigurationDb
                 b.HasIndex("ClientId");
 
                 b.ToTable("ClientSecrets");
-
-                b.HasData(
-                    new
-                    {
-                        Id = -1,
-                        ClientId = -1,
-                        Created = new DateTime(2020, 4, 9, 20, 0, 23, 664, DateTimeKind.Utc).AddTicks(5696),
-                        Type = "SharedSecret",
-                        Value = "SVMh3ARiDOtiprKv7cae7dAiGypszDwfNyrdP6ccW5k="
-                    });
             });
 
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.IdentityClaim", b =>
@@ -884,7 +864,7 @@ namespace recordkeepidentityserver.Migrations.ConfigurationDb
                     new
                     {
                         Id = -1,
-                        Created = new DateTime(2020, 4, 9, 20, 0, 23, 887, DateTimeKind.Utc).AddTicks(4300),
+                        Created = new DateTime(2020, 4, 11, 18, 30, 47, 892, DateTimeKind.Utc).AddTicks(2959),
                         DisplayName = "Your user identifier",
                         Emphasize = false,
                         Enabled = true,
@@ -896,7 +876,7 @@ namespace recordkeepidentityserver.Migrations.ConfigurationDb
                     new
                     {
                         Id = -2,
-                        Created = new DateTime(2020, 4, 9, 20, 0, 23, 895, DateTimeKind.Utc).AddTicks(4285),
+                        Created = new DateTime(2020, 4, 11, 18, 30, 47, 900, DateTimeKind.Utc).AddTicks(2009),
                         Description = "Your user profile information (first name, last name, etc.)",
                         DisplayName = "User profile",
                         Emphasize = true,
