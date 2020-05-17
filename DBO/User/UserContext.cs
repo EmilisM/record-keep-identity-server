@@ -2,6 +2,7 @@
 
 namespace record_keep_identity_server.DBO.User
 {
+    // ReSharper disable once PartialTypeWithSinglePart
     public partial class UserContext : DbContext
     {
         public UserContext()
@@ -49,6 +50,7 @@ namespace record_keep_identity_server.DBO.User
             OnModelCreatingPartial(modelBuilder);
         }
 
+        // ReSharper disable once PartialMethodWithSinglePart
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

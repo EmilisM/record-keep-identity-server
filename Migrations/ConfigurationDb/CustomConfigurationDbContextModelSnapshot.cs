@@ -9,7 +9,7 @@ using record_keep_identity_server.DBO;
 namespace recordkeepidentityserver.Migrations.ConfigurationDb
 {
     [DbContext(typeof(CustomConfigurationDbContext))]
-    partial class CustomConfigurationDbContextModelSnapshot : ModelSnapshot
+    class CustomConfigurationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

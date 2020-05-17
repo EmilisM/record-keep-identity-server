@@ -2,7 +2,7 @@
 
 namespace record_keep_identity_server.DBO.User
 {
-    public partial class UserData
+    public class UserData
     {
         public int Id { get; set; }
         public string PasswordHash { get; set; }
